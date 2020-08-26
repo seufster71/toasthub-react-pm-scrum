@@ -119,6 +119,22 @@ export default function usersReducer(state = {}, action) {
 		case 'PM_SCRUM_ORDERBY': { 
 			return reducerUtils.updateOrderBy(state,action);
 		}
+		case 'PM_SCRUM_ADD_PARENT': {
+			if (action.parent != null) {
+				return Object.assign({}, state, {
+					parent: action.parent,
+					parentType: action.parentType
+				});
+			} else {
+		        return state;
+		    }
+		}
+		case 'PM_SCRUM_CLEAR_PARENT': {
+			return Object.assign({}, state, {
+				parent: null,
+				parentType: null
+			});
+		}
 		default:
 			return state;
 	}
